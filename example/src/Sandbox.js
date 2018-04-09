@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import { getRegistry } from 'sandbox-builder';
 
-// TODO: Import all test files
-import './tests/App.test.js';
+const context = require.context('./tests', true, /\.test\.js$/);
+context.keys().forEach(module => context(module));
 
 export default class Sandbox extends Component {
   render() {

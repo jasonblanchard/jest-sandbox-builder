@@ -39,11 +39,11 @@ describe('App', () => {
 
     expect(onClick).toBeCalled();
   });
+
+  it('Does not include a render', () => {})
 });
 
-it('Outside main describe', () => {
+it('Outside App test main describe', () => {
   const wrapper = render();
   expect(1).toEqual(1);
 });
-
-it('No render', () => {})

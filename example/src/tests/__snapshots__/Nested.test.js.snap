@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nested renders 1`] = `
+<Nested>
+  <div
+    className="Nested"
+  >
+    This is a nested component 
+    <button>
+      click me
+    </button>
+  </div>
+</Nested>
+`;
