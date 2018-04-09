@@ -1,5 +1,6 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
+import webpack from 'webpack';
 
 export default {
   entry: './src/index.js',
@@ -35,6 +36,12 @@ export default {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html'
+    }),
+    new webpack.ProvidePlugin({
+      describe: ['sandbox-builder', 'describe'],
+      it: ['sandbox-builder', 'it'],
+      expect: ['sandbox-builder', 'expect'],
+      jest: ['sandbox-builder', 'jest'],
     })
   ]
 }

@@ -2,14 +2,16 @@ import React from 'react';
 import App from '../App';
 import { mount } from 'enzyme';
 
-export function factory() {
-  return <App />
-}
-
 function render(props) {
-  const component = <App {...props} />;
-  const wrapper = mount(component);
-  return wrapper;
+  // const component = <App {...props} />;
+  // const wrapper = mount(component);
+  // return wrapper;
+  return {
+    findWhere: () => ({
+      exists: () => {},
+      simulate: () => {}
+    })
+  };
 }
 
 describe('App', () => {
@@ -18,13 +20,13 @@ describe('App', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  describe('name', () => {
-    it('has a default name', () => {
+  describe('prop name', () => {
+    it('has a default prop name', () => {
       const wrapper = render();
       expect(wrapper.findWhere(element => element.type() && element.text() === 'Hello world').exists()).toEqual(true);
     });
 
-    it('takes a custom name', () => {
+    it('takes a custom prop name', () => {
       const wrapper = render({ name: 'Test World' });
       expect(wrapper.findWhere(element => element.type() && element.text() === 'Hello Test World').exists()).toEqual(true);
     });
