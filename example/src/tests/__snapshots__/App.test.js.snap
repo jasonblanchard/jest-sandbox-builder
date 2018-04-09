@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders 1`] = `
+<App
+  name="world"
+  onClick={[Function]}
+>
+  <div
+    className="App"
+  >
+    <h2
+      className="App-title"
+    >
+      Hello 
+      world
+    </h2>
+    <Nested
+      onClick={[Function]}
+    >
+      <div
+        className="Nested"
+      >
+        This is a nested component 
+        <button
+          onClick={[Function]}
+        >
+          click me
+        </button>
+      </div>
+    </Nested>
+  </div>
+</App>
+`;
