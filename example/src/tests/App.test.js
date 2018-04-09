@@ -5,10 +5,6 @@ import { mount } from 'enzyme';
 import { factory } from 'sandbox-builder';
 
 function render(props) {
-  // const component = <App {...props} />;
-  // const wrapper = mount(component);
-  // return wrapper;
-
   return factory(() => {
     return <App {...props} />;
   }, mount);

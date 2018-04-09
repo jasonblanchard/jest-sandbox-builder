@@ -19,6 +19,7 @@ export default class Sandbox extends Component {
     const registry = getRegistry();
     console.log(registry);
 
+    // TODO: Render with paths instead of `<ul>`s
     return (
       <ul>
         {this._recursivelyRenderRegistryKey(undefined, registry)}

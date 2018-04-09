@@ -22,6 +22,8 @@ export function it(name, fn) {
   fn();
 }
 
+// TODO: Deal with beforeEach
+
 export function factory(factoryFn, renderFn) {
   const component = factoryFn();
   set(registry, [...stack, lastIt], {
