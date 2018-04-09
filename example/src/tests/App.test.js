@@ -2,16 +2,16 @@ import React from 'react';
 import App from '../App';
 import { mount } from 'enzyme';
 
+import { factory } from 'sandbox-builder';
+
 function render(props) {
   // const component = <App {...props} />;
   // const wrapper = mount(component);
   // return wrapper;
-  return {
-    findWhere: () => ({
-      exists: () => {},
-      simulate: () => {}
-    })
-  };
+
+  return factory(() => {
+    return <App {...props} />;
+  }, mount);
 }
 
 describe('App', () => {
@@ -40,3 +40,10 @@ describe('App', () => {
     expect(onClick).toBeCalled();
   });
 });
+
+it('Outside main describe', () => {
+  const wrapper = render();
+  expect(1).toEqual(1);
+});
+
+it('No render', () => {})

@@ -3,6 +3,7 @@ import set from 'lodash.set';
 
 const registry = {};
 const stack = [];
+let lastIt;
 
 export function describe(name, fn) {
   if (stack[stack.length - 1]) {
@@ -16,8 +17,29 @@ export function describe(name, fn) {
 }
 
 export function it(name, fn) {
-  set(registry, [...stack, name], name);
+  set(registry, [...stack, name], null);
+  lastIt = name;
   fn();
 }
 
-console.log('registry', registry);
+export function factory(factoryFn, renderFn) {
+  const component = factoryFn();
+  set(registry, [...stack, lastIt], {
+    isLeaf: true,
+    component
+  });
+
+  if (process.env.NODE_ENV === 'test') return renderFn(component);
+
+  // TODO: Abstract and generalize
+  return {
+    findWhere: () => ({
+      exists: () => {},
+      simulate: () => {}
+    })
+  };
+}
+
+export function getRegistry() {
+  return registry;
+}

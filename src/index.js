@@ -11,5 +11,3 @@ export function expect() {
 export const jest = {
   fn: () => {}
 }
-
-export { default as factory } from './factory';
