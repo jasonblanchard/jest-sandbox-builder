@@ -40,7 +40,9 @@ describe('App', () => {
     expect(onClick).toBeCalled();
   });
 
-  it('Does not include a render', () => {})
+  it('Does not include a render', () => {
+    expect(1).toEqual(1);
+  })
 });
 
 it('Outside App test main describe', () => {
