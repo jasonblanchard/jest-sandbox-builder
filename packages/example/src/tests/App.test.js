@@ -2,7 +2,7 @@ import React from 'react';
 import App from '../App';
 import { mount } from 'enzyme';
 
-import { factory } from 'sandbox-builder';
+import { factory } from 'jest-sandbox-builder';
 
 function render(props) {
   return factory(() => {

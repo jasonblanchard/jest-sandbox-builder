@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { getRegistry } from 'sandbox-builder';
+import { getRegistry } from 'jest-sandbox-builder';
 
 const context = require.context('./tests', true, /\.test\.js$/);
 context.keys().forEach(module => context(module));

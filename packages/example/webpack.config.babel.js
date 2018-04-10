@@ -38,11 +38,11 @@ export default {
       template: 'src/index.html'
     }),
     new webpack.ProvidePlugin({ // TODO: Move to separate package
-      describe: ['sandbox-builder', 'describe'],
-      it: ['sandbox-builder', 'it'],
-      expect: ['sandbox-builder', 'expect'],
-      jest: ['sandbox-builder', 'jest'],
-      beforeEach: ['sandbox-builder', 'beforeEach'],
+      describe: ['jest-sandbox-builder', 'describe'],
+      it: ['jest-sandbox-builder', 'it'],
+      expect: ['jest-sandbox-builder', 'expect'],
+      jest: ['jest-sandbox-builder', 'jest'],
+      beforeEach: ['jest-sandbox-builder', 'beforeEach'],
     })
   ]
 }
