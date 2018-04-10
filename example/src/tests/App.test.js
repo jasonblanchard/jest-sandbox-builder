@@ -24,11 +24,11 @@ describe('App', () => {
     });
     
     it('does something', () => {
-      expect(wrapper.findWhere(element => element.type() && element.text() === 'before each').exists()).toEqual(true);
+      expect(wrapper.findWhere(element => element.type() && element.text() === 'Hello before each').exists()).toEqual(true);
     });
     
     it('does something again', () => {
-      expect(wrapper.findWhere(element => element.type() && element.text() === 'before each').exists()).toEqual(true);
+      expect(wrapper.findWhere(element => element.type() && element.text() === 'Hello before each').exists()).toEqual(true);
     });
   })
 
