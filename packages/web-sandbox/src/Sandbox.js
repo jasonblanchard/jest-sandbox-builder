@@ -28,35 +28,51 @@ export default class Sandbox extends Component {
 
     return (
       <Router>
-        <div>
-          <ul>
-            {this._recursivelyRenderRegistryKey(undefined, registry)}
-          </ul>
+        <div style={{ display: 'flex', height: '100vh' }}>
+          <div style={{ flex: 1, padding: '5px' }}>
+            <ul>
+              {this._recursivelyRenderRegistryKeyLink(undefined, registry)}
+            </ul>
+          </div>
+          <div style={{
+            flex: 5, border: '1px dashed gray',
+            backgroundImage: 'linear-gradient(45deg, #f1f1f1 25%, transparent 25%), linear-gradient(135deg, #f1f1f1 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f1f1f1 75%), linear-gradient(135deg, transparent 75%, #f1f1f1 75%)',
+            backgroundSize: '24px 24px',
+            backgroundPosition: '0 0, 12px 0, 12px -12px, 0px 12px'
+          }}>
+            {this._recursivelyRenderRegistryComponent(registry)}
+          </div>
         </div>
       </Router>
     );
   }
 
-  _recursivelyRenderRegistryKey(topLevelKey, registry) {
+  _recursivelyRenderRegistryKeyLink(topLevelKey, registry) {
     return Object.keys(registry).map(key => {
+      let result;
+      
       if (!registry[key]) return null;
       
       this._stack.push(key);
     
       if (registry[key].isLeaf) {
-        return (
+        result = (
           <li key={key}>
             <Link to={`${this._basePath}/${this._stack.join('/')}`}>{key}</Link>
-            {this._renderComponentPage(registry[key].component)}
           </li>
         );
+        
+        this._stack.pop();
+        return result;
       }
-
-      const result = (
+      
+      const isTopLevelKey = this._stack.length < 2;
+      
+      result = (
         <li key={key}>
-          {key}
+          {isTopLevelKey ? <h2>{key}</h2> : key}
           <ul>
-            {this._recursivelyRenderRegistryKey(key, registry[key])}
+            {this._recursivelyRenderRegistryKeyLink(key, registry[key])}
           </ul>
         </li>
       );
@@ -67,8 +83,34 @@ export default class Sandbox extends Component {
     });
   }
   
+  _recursivelyRenderRegistryComponent(registry) {
+    return Object.keys(registry).map(key => {
+      let result;
+      
+      if (!registry[key]) return null;
+      
+      this._stack.push(key);
+    
+      if (registry[key].isLeaf) {
+        result = (
+          <div key={key}>
+            {this._renderComponentPage(registry[key].component)}
+          </div>
+        );
+        
+        this._stack.pop();
+        return result;
+      }
+      
+      result = this._recursivelyRenderRegistryComponent(registry[key])
+
+      this._stack.pop();
+      
+      return result;
+    });
+  }
+  
   _renderComponentPage(component) {
-    console.log(this._stack);
     return (
       <Route exact path={`${this._basePath}/${this._stack.join('/')}`} render={() => component} />
     );

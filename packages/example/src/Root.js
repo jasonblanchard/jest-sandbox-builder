@@ -9,14 +9,14 @@ context.keys().forEach(module => context(module));
 
 import { Sandbox } from 'web-sandbox';
 
-import App from './App';
+import HomePage from './HomePage';
 
 export default class Root extends Component {
   render() {
     return (
       <Router>
         <div>
-          <Route exact path="/" component={App} />
+          <Route exact path="/" component={HomePage} />
           <Route exact path="/sandbox" render={() => <Sandbox registry={getRegistry()} />} />
         </div>
       </Router>

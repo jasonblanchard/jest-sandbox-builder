@@ -1,16 +1,16 @@
 import React from 'react';
-import App from '../App';
+import HomePage from '../HomePage';
 import { mount } from 'enzyme';
 
 import { factory } from 'jest-sandbox-builder';
 
 function render(props) {
   return factory(() => {
-    return <App {...props} />;
+    return <HomePage {...props} />;
   }, mount);
 }
 
-describe('App', () => {
+describe('HomePage', () => {
   it('renders', () => {
     const wrapper = render();
     expect(wrapper).toMatchSnapshot();
@@ -57,7 +57,7 @@ describe('App', () => {
   })
 });
 
-it('Outside App test main describe', () => {
+it('Outside HomePage test main describe', () => {
   const wrapper = render();
   expect(1).toEqual(1);
 });

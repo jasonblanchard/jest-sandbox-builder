@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App renders 1`] = `
-<App
+exports[`HomePage renders 1`] = `
+<HomePage
   name="world"
   onClick={[Function]}
 >
   <div
-    className="App"
+    className="HomePage"
   >
     <h2
-      className="App-title"
+      className="HomePage-title"
     >
       Hello 
       world
@@ -29,5 +29,5 @@ exports[`App renders 1`] = `
       </div>
     </Nested>
   </div>
-</App>
+</HomePage>
 `;
