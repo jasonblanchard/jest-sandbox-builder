@@ -15,6 +15,22 @@ describe('App', () => {
     const wrapper = render();
     expect(wrapper).toMatchSnapshot();
   });
+  
+  describe('block with beforeEach', () => {
+    let wrapper;
+    
+    beforeEach(() => {
+      wrapper = render({ name: 'before each' });  
+    });
+    
+    it('does something', () => {
+      expect(wrapper.findWhere(element => element.type() && element.text() === 'before each').exists()).toEqual(true);
+    });
+    
+    it('does something again', () => {
+      expect(wrapper.findWhere(element => element.type() && element.text() === 'before each').exists()).toEqual(true);
+    });
+  })
 
   describe('prop name', () => {
     it('has a default prop name', () => {

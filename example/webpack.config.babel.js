@@ -42,6 +42,7 @@ export default {
       it: ['sandbox-builder', 'it'],
       expect: ['sandbox-builder', 'expect'],
       jest: ['sandbox-builder', 'jest'],
+      beforeEach: ['sandbox-builder', 'beforeEach'],
     })
   ]
 }
