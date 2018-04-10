@@ -48,6 +48,18 @@ export function factory(factoryFn, renderFn) {
   };
 }
 
+export function conditionalFactory(factoryFn, mountFn, onRunTest) {
+  const component = factoryFn();
+  set(registry, [...stack, lastIt], {
+    isLeaf: true,
+    component
+  });
+
+  if (process.env.NODE_ENV === 'test') {
+    return onRunTest(mountFn(component));
+  }
+}
+
 export function getRegistry() {
   return registry;
 }

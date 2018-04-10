@@ -2,7 +2,7 @@ import React from 'react';
 import HomePage from '../HomePage';
 import { mount } from 'enzyme';
 
-import { factory } from 'jest-sandbox-builder';
+import { factory, conditionalFactory } from 'jest-sandbox-builder';
 
 function render(props) {
   return factory(() => {
@@ -10,10 +10,19 @@ function render(props) {
   }, mount);
 }
 
+function conditionalRender(props, testFn) {
+  conditionalFactory(
+    () => <HomePage {...props} />,
+    component => mount(component),
+    wrapper => testFn(wrapper)
+  )
+}
+
 describe('HomePage', () => {
   it('renders', () => {
-    const wrapper = render();
-    expect(wrapper).toMatchSnapshot();
+    conditionalRender({}, wrapper => {
+      expect(wrapper).toMatchSnapshot();
+    });
   });
   
   describe('block with beforeEach', () => {
