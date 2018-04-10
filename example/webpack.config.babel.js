@@ -37,7 +37,7 @@ export default {
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     }),
-    new webpack.ProvidePlugin({
+    new webpack.ProvidePlugin({ // TODO: Move to separate package
       describe: ['sandbox-builder', 'describe'],
       it: ['sandbox-builder', 'it'],
       expect: ['sandbox-builder', 'expect'],

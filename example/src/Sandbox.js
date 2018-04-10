@@ -5,6 +5,7 @@ import { getRegistry } from 'sandbox-builder';
 const context = require.context('./tests', true, /\.test\.js$/);
 context.keys().forEach(module => context(module));
 
+// TODO: Move to separate package.
 export default class Sandbox extends Component {
   render() {
     return (
