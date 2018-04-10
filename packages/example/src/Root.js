@@ -17,7 +17,7 @@ export default class Root extends Component {
       <Router>
         <div>
           <Route exact path="/" component={HomePage} />
-          <Route path="/sandbox" render={() => <Sandbox registry={getRegistry()} />} />
+          <Route path="/sandbox" render={() => <Sandbox registry={getRegistry()} basePath="/sandbox" />} />
         </div>
       </Router>
     );

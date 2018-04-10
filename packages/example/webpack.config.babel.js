@@ -5,8 +5,9 @@ import webpack from 'webpack';
 export default {
   entry: './src/index.js',
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: 'http://localhost:8080/',
+    filename: 'bundle.js'
   },
   devtool: 'inline-source-map',
   devServer: {

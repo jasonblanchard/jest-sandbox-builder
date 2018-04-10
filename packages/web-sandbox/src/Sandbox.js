@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 export default class Sandbox extends Component {
   static defaultProps = {
+    basePath: 'sandbox',
     registry: {}
   }
   
@@ -10,7 +11,6 @@ export default class Sandbox extends Component {
     super(props);
     
     this._stack = [];
-    this._basePath = window.location.pathname;
   }
   
   render() {
@@ -55,7 +55,7 @@ export default class Sandbox extends Component {
       if (registry[key].isLeaf) {
         result = (
           <li key={key}>
-            <Link to={`${this._basePath}/${this._stack.join('/')}`}>{key}</Link>
+            <Link to={`${this.props.basePath}/${this._stack.join('/')}`}>{key}</Link>
           </li>
         );
         
@@ -124,7 +124,7 @@ export default class Sandbox extends Component {
     )
     
     return (
-      <Route exact path={`${this._basePath}/${this._stack.join('/')}`} render={() => page} />
+      <Route exact path={`${this.props.basePath}/${this._stack.join('/')}`} render={() => page} />
     );
   }
 }
