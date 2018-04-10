@@ -1,6 +1,6 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
-import webpack from 'webpack';
+import SandboxWebpackPlugin from 'sandbox-webpack-plugin';
 
 export default {
   entry: './src/index.js',
@@ -38,12 +38,6 @@ export default {
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     }),
-    new webpack.ProvidePlugin({ // TODO: Move to separate package
-      describe: ['jest-sandbox-builder', 'describe'],
-      it: ['jest-sandbox-builder', 'it'],
-      expect: ['jest-sandbox-builder', 'expect'],
-      jest: ['jest-sandbox-builder', 'jest'],
-      beforeEach: ['jest-sandbox-builder', 'beforeEach'],
-    })
+    new SandboxWebpackPlugin()
   ]
 }
