@@ -8,7 +8,7 @@ SandboxWebpackPlugin.prototype.apply = function(compiler) {
   compiler.plugin('done', function(compiler) {
     console.log('Replaced Jest globals with sandbox functions');
   });
-  
+
   compiler.options.plugins.push(new webpack.ProvidePlugin({
     describe: ['jestbox-builder', 'describe'],
     it: ['jestbox-builder', 'it'],
