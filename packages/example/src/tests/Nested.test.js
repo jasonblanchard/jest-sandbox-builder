@@ -3,20 +3,30 @@ import React from 'react';
 
 import Nested from '../Nested';
 
-import { renderFactory } from 'jestbox-builder';
+import { jestbox, scenario } from 'jestbox-builder';
 
-function render(props, testFn) {
-  renderFactory(
-    () => <Nested {...props} />,
-    component => mount(component),
-    wrapper => testFn(wrapper)
-  )
+function factory(props) {
+  return <Nested {...props} />
 }
+
+function render(props) {
+  return mount(factory(props));
+}
+
+jestbox('Nested', () => {
+  scenario('Base case', () => {
+    return factory();
+  });
+
+  scenario('custom onClick', () => {
+    const onClick = () => { console.log('Custom Clicked') };
+    return factory({ onClick });
+  })
+});
 
 describe('Nested', () => {
   it('renders', () => {
-    render({}, wrapper => {
-      expect(wrapper).toMatchSnapshot();
-    });
+    const wrapper = render();
+    expect(wrapper).toMatchSnapshot();
   });
 });
