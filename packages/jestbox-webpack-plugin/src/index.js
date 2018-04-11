@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 
 function SandboxWebpackPlugin(options) {
-  // Setup the plugin instance with options...
+  // Setup the plugin instance with options.....
 }
 
 SandboxWebpackPlugin.prototype.apply = function(compiler) {
