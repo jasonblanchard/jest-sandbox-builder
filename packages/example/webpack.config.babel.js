@@ -6,13 +6,14 @@ export default {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: 'http://localhost:8080/',
+    publicPath: 'http://localhost:8081/',
     filename: 'bundle.js'
   },
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
-    historyApiFallback: true
+    historyApiFallback: true,
+    port: '8081'
   },
   module: {
     rules: [
