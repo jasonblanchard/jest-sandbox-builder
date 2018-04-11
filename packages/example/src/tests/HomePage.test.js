@@ -2,7 +2,7 @@ import React from 'react';
 import HomePage from '../HomePage';
 import { mount } from 'enzyme';
 
-import { renderFactory } from 'jest-sandbox-builder';
+import { renderFactory } from 'jestbox-builder';
 
 function render(props, testFn) {
   renderFactory(

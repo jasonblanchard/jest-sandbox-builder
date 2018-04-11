@@ -1,6 +1,6 @@
 {
-  "name": "web-sandbox",
-  "version": "0.0.1",
+  "name": "jestbox-web",
+  "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {

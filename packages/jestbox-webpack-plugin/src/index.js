@@ -10,11 +10,11 @@ SandboxWebpackPlugin.prototype.apply = function(compiler) {
   });
   
   compiler.options.plugins.push(new webpack.ProvidePlugin({
-    describe: ['jest-sandbox-builder', 'describe'],
-    it: ['jest-sandbox-builder', 'it'],
-    expect: ['jest-sandbox-builder', 'expect'],
-    jest: ['jest-sandbox-builder', 'jest'],
-    beforeEach: ['jest-sandbox-builder', 'beforeEach']
+    describe: ['jestbox-builder', 'describe'],
+    it: ['jestbox-builder', 'it'],
+    expect: ['jestbox-builder', 'expect'],
+    jest: ['jestbox-builder', 'jest'],
+    beforeEach: ['jestbox-builder', 'beforeEach']
   }));
 };
 

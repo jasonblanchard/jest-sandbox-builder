@@ -1,6 +1,6 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
-import SandboxWebpackPlugin from 'sandbox-webpack-plugin';
+import SandboxWebpackPlugin from 'jestbox-webpack-plugin';
 
 export default {
   entry: './src/index.js',
