@@ -6,17 +6,17 @@ export default class Sandbox extends Component {
     basePath: 'sandbox',
     registry: {}
   }
-  
+
   constructor(props) {
     super(props);
-    
+
     this._stack = [];
   }
-  
+
   render() {
     return (
       <div>
-        <h1>sandbox</h1>
+        <h1>Jestbox</h1>
         {this._renderRegistry()}
       </div>
     );
@@ -47,24 +47,24 @@ export default class Sandbox extends Component {
   _recursivelyRenderRegistryKeyLink(topLevelKey, registry) {
     return Object.keys(registry).map(key => {
       let result;
-      
+
       if (!registry[key]) return null;
-      
+
       this._stack.push(key);
-    
+
       if (registry[key].isLeaf) {
         result = (
           <li key={key}>
             <Link to={`${this.props.basePath}/${this._stack.join('/')}`}>{key}</Link>
           </li>
         );
-        
+
         this._stack.pop();
         return result;
       }
-      
+
       const isTopLevelKey = this._stack.length < 2;
-      
+
       result = (
         <li key={key}>
           {isTopLevelKey ? <h2>{key}</h2> : key}
@@ -73,40 +73,40 @@ export default class Sandbox extends Component {
           </ul>
         </li>
       );
-      
+
       this._stack.pop();
-      
+
       return result;
     });
   }
-  
+
   _recursivelyRenderRegistryComponent(registry) {
     return Object.keys(registry).map(key => {
       let result;
-      
+
       if (!registry[key]) return null;
-      
+
       this._stack.push(key);
-    
+
       if (registry[key].isLeaf) {
         result = (
           <div key={key}>
             {this._renderComponentPage(registry[key].component, [...this._stack].join(' > '))}
           </div>
         );
-        
+
         this._stack.pop();
         return result;
       }
-      
+
       result = this._recursivelyRenderRegistryComponent(registry[key])
 
       this._stack.pop();
-      
+
       return result;
     });
   }
-  
+
   _renderComponentPage(component, title) {
     const page = (
       <div>
@@ -122,7 +122,7 @@ export default class Sandbox extends Component {
         </div>
       </div>
     )
-    
+
     return (
       <Route exact path={`${this.props.basePath}/${this._stack.join('/')}`} render={() => page} />
     );
