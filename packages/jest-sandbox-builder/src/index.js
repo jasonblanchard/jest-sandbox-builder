@@ -30,40 +30,6 @@ export function beforeEach(fn) {
   fn();
 }
 
-export function factory(factoryFn, renderFn) {
-  const component = factoryFn();
-  set(registry, [...stack, lastIt], {
-    isLeaf: true,
-    component
-  });
-
-  if (process.env.NODE_ENV === 'test') return renderFn(component);
-
-  // TODO: Abstract and generalize
-  return {
-    findWhere: () => ({
-      exists: () => {},
-      simulate: () => {}
-    })
-  };
-}
-
-export function conditionalFactory(factoryFn, mountFn, onRunTest) {
-  const component = factoryFn();
-  set(registry, [...stack, lastIt], {
-    isLeaf: true,
-    component
-  });
-
-  if (process.env.NODE_ENV === 'test') {
-    return onRunTest(mountFn(component));
-  }
-}
-
-export function getRegistry() {
-  return registry;
-}
-
 // TODO: Mock all Jest globals https://facebook.github.io/jest/docs/en/api.html
 export function expect() {
   return {
@@ -76,3 +42,37 @@ export function expect() {
 export const jest = {
   fn: () => {}
 }
+
+export function getRegistry() {
+  return registry;
+}
+
+export function renderFactory(factory, mount, test) {
+  const component = factory();
+  set(registry, [...stack, lastIt], {
+    isLeaf: true,
+    component
+  });
+  
+  if (process.env.NODE_ENV === 'test') {
+    return test(mount(component));
+  }
+}
+
+// export function factory(factoryFn, renderFn) {
+//   const component = factoryFn();
+//   set(registry, [...stack, lastIt], {
+//     isLeaf: true,
+//     component
+//   });
+// 
+//   if (process.env.NODE_ENV === 'test') return renderFn(component);
+// 
+//   // TODO: Abstract and generalize
+//   return {
+//     findWhere: () => ({
+//       exists: () => {},
+//       simulate: () => {}
+//     })
+//   };
+// }

@@ -2,17 +2,21 @@ import { mount } from 'enzyme';
 import React from 'react';
 
 import Nested from '../Nested';
-import { factory } from 'jest-sandbox-builder';
 
-function render(props) {
-  return factory(() => {
-    return <Nested {...props} />;
-  }, mount);
+import { renderFactory } from 'jest-sandbox-builder';
+
+function render(props, testFn) {
+  renderFactory(
+    () => <Nested {...props} />,
+    component => mount(component),
+    wrapper => testFn(wrapper)
+  )
 }
 
 describe('Nested', () => {
   it('renders', () => {
-    const wrapper = render();
-    expect(wrapper).toMatchSnapshot();
+    render({}, wrapper => {
+      expect(wrapper).toMatchSnapshot();
+    });
   });
 });

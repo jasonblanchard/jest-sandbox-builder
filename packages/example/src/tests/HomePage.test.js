@@ -2,16 +2,10 @@ import React from 'react';
 import HomePage from '../HomePage';
 import { mount } from 'enzyme';
 
-import { factory, conditionalFactory } from 'jest-sandbox-builder';
+import { renderFactory } from 'jest-sandbox-builder';
 
-function render(props) {
-  return factory(() => {
-    return <HomePage {...props} />;
-  }, mount);
-}
-
-function conditionalRender(props, testFn) {
-  conditionalFactory(
+function render(props, testFn) {
+  renderFactory(
     () => <HomePage {...props} />,
     component => mount(component),
     wrapper => testFn(wrapper)
@@ -20,45 +14,51 @@ function conditionalRender(props, testFn) {
 
 describe('HomePage', () => {
   it('renders', () => {
-    conditionalRender({}, wrapper => {
+    render({}, wrapper => {
       expect(wrapper).toMatchSnapshot();
     });
   });
   
   describe('block with beforeEach', () => {
-    let wrapper;
+    let props;
     
     beforeEach(() => {
-      wrapper = render({ name: 'before each' });  
+      props = { name: 'before each' };
     });
     
     it('does something', () => {
-      expect(wrapper.findWhere(element => element.type() && element.text() === 'Hello before each').exists()).toEqual(true);
+      render(props, wrapper => {
+        expect(wrapper.findWhere(element => element.type() && element.text() === 'Hello before each').exists()).toEqual(true);
+      });
     });
     
     it('does something again', () => {
-      expect(wrapper.findWhere(element => element.type() && element.text() === 'Hello before each').exists()).toEqual(true);
+      render(props, wrapper => {
+        expect(wrapper.findWhere(element => element.type() && element.text() === 'Hello before each').exists()).toEqual(true);
+      });
     });
   })
 
   describe('prop name', () => {
     it('has a default prop name', () => {
-      const wrapper = render();
-      expect(wrapper.findWhere(element => element.type() && element.text() === 'Hello world').exists()).toEqual(true);
+      render({}, wrapper => {
+        expect(wrapper.findWhere(element => element.type() && element.text() === 'Hello world').exists()).toEqual(true);
+      });
     });
 
     it('takes a custom prop name', () => {
-      const wrapper = render({ name: 'Test World' });
-      expect(wrapper.findWhere(element => element.type() && element.text() === 'Hello Test World').exists()).toEqual(true);
+      render({ name: 'Test World' }, wrapper => {
+        expect(wrapper.findWhere(element => element.type() && element.text() === 'Hello Test World').exists()).toEqual(true);
+      });
     });
   });
 
   it('calls onClick', () => {
     const onClick = jest.fn();
-    const wrapper = render({ onClick });
-    wrapper.findWhere(element => element.type() && element.text() === 'click me').simulate('click');
-
-    expect(onClick).toBeCalled();
+    render({ onClick }, wrapper => {
+      wrapper.findWhere(element => element.type() && element.text() === 'click me').simulate('click');
+      expect(onClick).toBeCalled();
+    });
   });
 
   it('Does not include a render', () => {
@@ -67,6 +67,7 @@ describe('HomePage', () => {
 });
 
 it('Outside HomePage test main describe', () => {
-  const wrapper = render();
-  expect(1).toEqual(1);
+  render({}, () => {
+    expect(1).toEqual(1);
+  });
 });
