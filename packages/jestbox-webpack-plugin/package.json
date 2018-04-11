@@ -1,6 +1,6 @@
 {
   "name": "jestbox-webpack-plugin",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -17,6 +17,6 @@
     "webpack": "^4.5.0"
   },
   "dependencies": {
-    "jestbox-builder": "^0.0.3"
+    "jestbox-builder": "^0.0.5"
   }
 }
