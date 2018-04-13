@@ -132,5 +132,5 @@ lerna exec --ignore=example -- npm run build
 Publish all packages
 
 ```
-learna publish --force-publish=jestbox-builder,jestbox-web,jestbox-webpack-plugin
+lerna publish --force-publish=jestbox-builder,jestbox-web,jestbox-webpack-plugin
 ```
