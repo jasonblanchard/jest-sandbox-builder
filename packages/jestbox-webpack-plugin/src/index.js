@@ -17,4 +17,4 @@ class SandboxWebpackPlugin {
   }
 }
 
-export default SandboxWebpackPlugin;
+module.exports = SandboxWebpackPlugin;
