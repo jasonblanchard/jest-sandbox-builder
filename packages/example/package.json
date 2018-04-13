@@ -1,7 +1,7 @@
 {
   "name": "example",
   "private": true,
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -30,9 +30,9 @@
     "webpack-dev-server": "^3.1.3"
   },
   "dependencies": {
-    "jestbox-builder": "^0.0.7",
-    "jestbox-web": "^0.0.7",
-    "jestbox-webpack-plugin": "^0.0.7",
+    "jestbox-builder": "^0.0.8",
+    "jestbox-web": "^0.0.8",
+    "jestbox-webpack-plugin": "^0.0.8",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-router-dom": "^4.2.2"
