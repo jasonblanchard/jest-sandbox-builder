@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-export default class Sandbox extends Component {
+export default class Jestbox extends Component {
   static defaultProps = {
     basePath: 'sandbox',
     registry: {}

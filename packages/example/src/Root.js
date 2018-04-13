@@ -7,7 +7,7 @@ import { getRegistry } from 'jestbox-builder';
 const context = require.context('./tests', true, /\.test\.js$/);
 context.keys().forEach(module => context(module));
 
-import { Sandbox } from 'jestbox-web';
+import { Jestbox } from 'jestbox-web';
 
 import HomePage from './HomePage';
 
@@ -17,7 +17,7 @@ export default class Root extends Component {
       <Router>
         <div>
           <Route exact path="/" component={HomePage} />
-          <Route path="/jestbox" render={() => <Sandbox registry={getRegistry()} basePath="/jestbox" />} />
+          <Route path="/jestbox" render={() => <Jestbox registry={getRegistry()} basePath="/jestbox" />} />
         </div>
       </Router>
     );
